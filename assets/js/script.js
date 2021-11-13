@@ -1,3 +1,4 @@
+// Clases
 class Propietario {
 	constructor(nombre, direccion, telefono) {
 		this._nombre = nombre;
@@ -38,77 +39,99 @@ class Mascota extends Animal {
 	}
 }
 
-const addPet = document.querySelector("#addPet");
+// Validaciones
 
-addPet.addEventListener("click", (e) => {
-	e.preventDefault();
-	const propietario = document.querySelector("#propietario").value;
-	const telefono = document.querySelector("#telefono").value;
-	const direccion = document.querySelector("#direccion").value;
-	const nombreMascota = document.querySelector("#nombreMascota").value;
-	const tipo = document.querySelector("#tipo").value;
-	const enfermedad = document.querySelector("#enfermedad").value;
-	const resultado = document.querySelector("#resultado");
-
-	(() => {
-		if (propietario != "" && direccion != "" && nombreMascota != "" && enfermedad != "" && phoneNumberRegex.test(telefono)) {
-			const nuevaMascota = new Mascota(`${propietario}`, `${direccion}`, `${telefono}`, `${tipo}`, `${nombreMascota}`, `${enfermedad}`);
-			li = document.createElement("li");
-			li.innerHTML = `${nuevaMascota.datosPropietario()} <li> ${nuevaMascota.tipo}. El nombre de la mascota es: ${nuevaMascota._nombreMascota} y la enfermedad es: ${nuevaMascota._enfermedad}</li>`;
-			resultado.appendChild(li);
-		} else {
-			alert("Todos los campos deben tener informacion.");
-		}
-	})();
-});
-//
-
-const regularExpressions = {
-	propietario: /^[a-zA-Z\s]{1,40}/,
-	telefono: /^\d{9}$/,
+const expresiones = {
+	propietario: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+	telefono: /^\d{11}$/,
 	direccion: /^[a-zA-Z0-9\-]{1,40}/,
-	nombreMascota: /^[a-zA-Z\s]{1,40}/,
-	enfermedad: /^[a-zA-Z\s]{1,40}/,
+	nombreMascota: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+	motivoConsulta: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
 };
-const form = document.querySelector("#form");
-const inputs = document.querySelectorAll("#form input");
-const validarFormulario = (e) => {
-	// const fragment = document.createDocumentFragment();
-	const newNodeP = document.createElement("p");
-	const ownerMessage = document.querySelector("#ownerMessage");
+const campos = {
+	propietario: false,
+	telefono: false,
+	direccion: false,
+	nombreMascota: false,
+	motivoConsulta: false,
+};
+const formulario = document.getElementById("formulario");
+const inputs = document.querySelectorAll("#formulario input");
 
+const validarFormulario = (e) => {
 	switch (e.target.name) {
 		case "propietario":
-			if (regularExpressions.propietario.test(e.target.value) && newNodeP.hasAttribute("class")) {
-				newNodeP.setAttribute("class", "form__validation-ok");
-				// newNodeP.classList.remove("form__validation-error");
-				// newNodeP.classList.add("form__validation-ok");
-				newNodeP.textContent = "Correcto";
-				ownerMessage.appendChild(newNodeP);
-			} else {
-				newNodeP.classList.add("form__validation-error");
-				newNodeP.classList.remove("form__validation-ok");
-				newNodeP.textContent = "El nombre del dueño sólo puede tener letras.";
-				// ownerMessage.appendChild(newNodeP);
-			}
-
+			validarCampo(expresiones.propietario, e.target, e.target.name);
 			break;
 		case "telefono":
+			validarCampo(expresiones.telefono, e.target, e.target.name);
 			break;
 		case "direccion":
+			validarCampo(expresiones.direccion, e.target, e.target.name);
 			break;
 		case "nombreMascota":
+			validarCampo(expresiones.nombreMascota, e.target, e.target.name);
 			break;
-		case "enfermedad":
+		case "motivoConsulta":
+			validarCampo(expresiones.motivoConsulta, e.target, e.target.name);
 			break;
 	}
 };
 
+const validarCampo = (expresion, input, campo) => {
+	if (expresion.test(input.value)) {
+		document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-incorrecto");
+		document.getElementById(`grupo__${campo}`).classList.add("formulario__grupo-correcto");
+		document.querySelector(`#grupo__${campo} i`).classList.add("fa-check-circle");
+		document.querySelector(`#grupo__${campo} i`).classList.remove("fa-times-circle");
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove("formulario__input-error-activo");
+		campos[campo] = true;
+	} else {
+		document.getElementById(`grupo__${campo}`).classList.add("formulario__grupo-incorrecto");
+		document.getElementById(`grupo__${campo}`).classList.remove("formulario__grupo-correcto");
+		document.querySelector(`#grupo__${campo} i`).classList.add("fa-times-circle");
+		document.querySelector(`#grupo__${campo} i`).classList.remove("fa-check-circle");
+		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add("formulario__input-error-activo");
+		campos[campo] = false;
+	}
+};
 inputs.forEach((input) => {
-	// input.addEventListener("keyup", validarFormulario);
+	input.addEventListener("keyup", validarFormulario);
 	input.addEventListener("blur", validarFormulario);
 });
 
-form.addEventListener("submit", (e) => {
+// Mostrar Informacion
+
+formulario.addEventListener("submit", (e) => {
 	e.preventDefault();
+
+	const propietario = document.getElementById("propietario").value;
+	const telefono = document.getElementById("telefono").value;
+	const direccion = document.getElementById("direccion").value;
+	const nombreMascota = document.getElementById("nombreMascota").value;
+	const tipo = document.getElementById("tipo").value;
+	const motivoConsulta = document.getElementById("motivoConsulta").value;
+
+	if (campos.propietario && campos.telefono && campos.direccion && campos.nombreMascota && campos.motivoConsulta) {
+		formulario.reset();
+		document.getElementById("formulario__mensaje-exito").classList.add("formulario__mensaje-exito-activo");
+		document.getElementById("formulario__mensaje").classList.remove("formulario__mensaje-activo");
+
+		setTimeout(() => {
+			document.getElementById("formulario__mensaje-exito").classList.remove("formulario__mensaje-exito-activo");
+		}, 5000);
+		document.querySelectorAll(".formulario__grupo-correcto").forEach((icono) => {
+			icono.classList.remove("formulario__grupo-correcto");
+		});
+		const fragment = document.createDocumentFragment();
+		const nuevaMascota = new Mascota(`${propietario}`, `${direccion}`, `${telefono}`, `${tipo}`, `${nombreMascota}`, `${motivoConsulta}`);
+		const li = document.createElement("li");
+		li.innerHTML = `<p>${nuevaMascota.datosPropietario()} ${nuevaMascota.tipo}.</p><p><li>El nombre de la mascota es: ${nuevaMascota._nombreMascota} y el motivo de la consulta es: ${
+			nuevaMascota._enfermedad
+		}</li></p>`;
+		const resultado = document.querySelector("#resultado ul");
+		resultado.appendChild(li);
+	} else {
+		document.getElementById("formulario__mensaje").classList.add("formulario__mensaje-activo");
+	}
 });

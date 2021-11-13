@@ -26,7 +26,7 @@
             <div class="form-group my-3 formulario__grupo" id="grupo__propietario">
               <label for="propietario" class="formulario__label">Dueño: </label>
               <div class="formulario__grupo-input">
-                <input type="text" class="form-control formulario__input" id="propietario" name="propietario" aria-describedby="Ingrese nombre del dueño de la mascota" placeholder="Ingrese nombre del dueño de la mascota">
+                <input type="text" class="form-control formulario__input" id="propietario" name="propietario" aria-describedby="Ingrese nombre del dueño de la mascota" placeholder="Homero Simpson">
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
               </div>
               <p class="formulario__input-error">El nombre del propietario sólo puede tener letras.</p>
@@ -35,7 +35,7 @@
             <div class="form-group my-3 formulario__grupo" id="grupo__telefono">
               <label for="telefono" class="formulario__label">Número de teléfono: </label>
               <div class="formulario__grupo-input">
-                <input type="text" class="form-control formulario__input" id="telefono" name="telefono" aria-describedby="Ingrese número de teléfono" placeholder="Ingrese número de teléfono">
+                <input type="text" class="form-control formulario__input" id="telefono" name="telefono" aria-describedby="Ingrese número de teléfono" placeholder="56912345678">
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
               </div>
               <p class="formulario__input-error">El número de teléfono solo puede tener números, con un máximo de 11.</p>
@@ -44,7 +44,7 @@
             <div class="form-group my-3 formulario__grupo" id="grupo__direccion">
               <label for="direccion" class="formulario__label">Dirección: </label>
               <div class="formulario__grupo-input">
-                <input type="text" class="form-control formulario__input" id="direccion" name="direccion" aria-describedby="Ingrese dirección" placeholder="Ingrese dirección">
+                <input type="text" class="form-control formulario__input" id="direccion" name="direccion" aria-describedby="Ingrese dirección" placeholder="Avenida Siempre Viva 732">
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
               </div>
               <p class="formulario__input-error">La dirección sólo puede tener letras y números.</p>
@@ -53,14 +53,14 @@
             <div class="form-group my-3 formulario__grupo" id="grupo__nombreMascota">
               <label for="nombreMascota" class="formulario__label">Nombre Mascota: </label>
               <div class="formulario__grupo-input">
-                <input type="text" class="form-control formulario__input" id="nombreMascota" name="nombreMascota" aria-describedby="Ingrese nombre de la mascota" placeholder="Ingrese nombre de la mascota">
+                <input type="text" class="form-control formulario__input" id="nombreMascota" name="nombreMascota" aria-describedby="Ingrese nombre de la mascota" placeholder="Ayudante De Santa">
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
               </div>
               <p class="formulario__input-error">El nombre de la mascota sólo puede tener letras.</p>
             </div>
             <!-- Grupo: Tipo Animal -->
-            <div class="form-group my-3">
-                <label for="tipo">Tipo</label>
+            <div class="form-group my-3 formulario__grupo" id="grupo__tipoAnimal">
+                <label for="tipo" class="formulario__label">Tipo: </label>
                 <select class="form-control" id="tipo">
                   <option value="perro">Perro</option>
                   <option value="gato">Gato</option>
@@ -71,7 +71,7 @@
             <div class="form-group my-3 formulario__grupo" id="grupo__motivoConsulta">
               <label for="motivoConsulta" class="formulario__label">Motivo Consulta: </label>
               <div class="formulario__grupo-input">
-                <input type="text" class="form-control formulario__input" id="motivoConsulta" name="motivoConsulta" aria-describedby="Ingrese el motivo de la consulta" placeholder="Ingrese el motivo de la consulta">
+                <input type="text" class="form-control formulario__input" id="motivoConsulta" name="motivoConsulta" aria-describedby="Ingrese el motivo de la consulta" placeholder="Consulta Médica General">
                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
               </div>
               <p class="formulario__input-error">El motivo de la consulta sólo puede tener letras.</p>
@@ -82,15 +82,17 @@
             </div>
             <!-- Botón Submit -->
             <div class="formulario__grupo formulario__grupo-btn-enviar">
-              <button type="submit" class="btn btn-primary my-3 formulario__btn" id="addPet">Agregar</button>
-              <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario se envio exitosamente.</p>
+              <button type="submit" class="btn btn-primary my-3 formulario__btn" id="agregarMascota">Agregar</button>
+              <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente.</p>
             </div>
           </form>
           <!-- Div Resultados -->
           <div class="text-center mt-5">
-              <p>Datos Agregados</p>
-              <div id="resultado">
+              <div id="resultado" class="card text-dark bg-light mb-3 w-100">
+                <div class="card-header"><b>Datos Agregados</b></div>
+                <div class="card-body">
                   <ul></ul>
+                </div>
               </div>
           </div>
     </div>
