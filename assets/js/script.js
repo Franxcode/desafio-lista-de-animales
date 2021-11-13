@@ -73,19 +73,25 @@ const regularExpressions = {
 const form = document.querySelector("#form");
 const inputs = document.querySelectorAll("#form input");
 const validarFormulario = (e) => {
+	// const fragment = document.createDocumentFragment();
+	const newNodeP = document.createElement("p");
+	const ownerMessage = document.querySelector("#ownerMessage");
+
 	switch (e.target.name) {
 		case "propietario":
-			if (regularExpressions.propietario.test(e.target.value)) {
-				document.querySelector("#owner p").classList.remove("form__validation-error");
-				document.querySelector("#owner p").classList.add("form__validation-ok");
+			if (regularExpressions.propietario.test(e.target.value) && newNodeP.hasAttribute("class")) {
+				newNodeP.setAttribute("class", "form__validation-ok");
+				// newNodeP.classList.remove("form__validation-error");
+				// newNodeP.classList.add("form__validation-ok");
+				newNodeP.textContent = "Correcto";
+				ownerMessage.appendChild(newNodeP);
 			} else {
-				const p = document.createElement("p");
-				console.log(p);
-				p.classList.add("form__validation-error");
-				p.textContent = "El nombre del dueño sólo puede tener letras.";
-				const owner = document.querySelector("#owner");
-				owner.appendChild(p);
+				newNodeP.classList.add("form__validation-error");
+				newNodeP.classList.remove("form__validation-ok");
+				newNodeP.textContent = "El nombre del dueño sólo puede tener letras.";
+				// ownerMessage.appendChild(newNodeP);
 			}
+
 			break;
 		case "telefono":
 			break;
@@ -99,7 +105,7 @@ const validarFormulario = (e) => {
 };
 
 inputs.forEach((input) => {
-	input.addEventListener("keyup", validarFormulario);
+	// input.addEventListener("keyup", validarFormulario);
 	input.addEventListener("blur", validarFormulario);
 });
 

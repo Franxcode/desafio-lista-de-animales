@@ -7,6 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Google Fonts - Tajawal 500 -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500&display=swap" rel="stylesheet"> 
+    <!-- Font Awesome CDN v5.15.4 -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- My Own CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Desafio - Lista De Animales</title>
@@ -18,24 +20,45 @@
             <h1 class="my-3">Pet-XYZ</h1>
             <h2 class="my-3">Consulta Veterinaria</h2>
         </div>
-        <form id="form">
-          <small id="textoAyuda" class="form-text text-muted">Nunca compartiremos tus datos.</small>
-            <div class="form-group my-3 owner">
-              <label for="propietario">Dueño: </label>
-              <input type="text" class="form-control" id="propietario" name="propietario" aria-describedby="textoAyuda">
+        <form action="" class="formulario" id="formulario">
+          <!-- <small id="textoAyuda" class="form-text text-muted">Nunca compartiremos tus datos.</small> -->
+          <!-- Grupo: Propietario -->
+            <div class="form-group my-3 formulario__grupo" id="grupo__propietario">
+              <label for="propietario" class="formulario__label">Dueño: </label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="form-control formulario__input" id="propietario" name="propietario" aria-describedby="Ingrese nombre del dueño de la mascota" placeholder="Ingrese nombre del dueño de la mascota">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">El nombre del propietario sólo puede tener letras.</p>
             </div>
-            <div class="form-group my-3">
-              <label for="telefono">Numero Telefonico: </label>
-              <input type="text" class="form-control" id="telefono" name="telefono">
+            <!-- Grupo: Numero Telefonico -->
+            <div class="form-group my-3 formulario__grupo" id="grupo__telefono">
+              <label for="telefono" class="formulario__label">Número de teléfono: </label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="form-control formulario__input" id="telefono" name="telefono" aria-describedby="Ingrese número de teléfono" placeholder="Ingrese número de teléfono">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">El número de teléfono solo puede tener números, con un máximo de 11.</p>
             </div>
-            <div class="form-group my-3">
-              <label for="direccion">Lugar de Residencia: </label>
-              <input type="text" class="form-control" id="direccion" name="direccion">
+            <!-- Grupo: Lugar de Residencia -->
+            <div class="form-group my-3 formulario__grupo" id="grupo__direccion">
+              <label for="direccion" class="formulario__label">Dirección: </label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="form-control formulario__input" id="direccion" name="direccion" aria-describedby="Ingrese dirección" placeholder="Ingrese dirección">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">La dirección sólo puede tener letras y números.</p>
             </div>
-            <div class="form-group my-3">
-              <label for="nombreMascota">Nombre de la Mascota: </label>
-              <input type="text" class="form-control" id="nombreMascota" name="nombreMascota"> 
+            <!-- Grupo: Nombre de la Mascota -->
+            <div class="form-group my-3 formulario__grupo" id="grupo__nombreMascota">
+              <label for="nombreMascota" class="formulario__label">Nombre Mascota: </label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="form-control formulario__input" id="nombreMascota" name="nombreMascota" aria-describedby="Ingrese nombre de la mascota" placeholder="Ingrese nombre de la mascota">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">El nombre de la mascota sólo puede tener letras.</p>
             </div>
+            <!-- Grupo: Tipo Animal -->
             <div class="form-group my-3">
                 <label for="tipo">Tipo</label>
                 <select class="form-control" id="tipo">
@@ -44,12 +67,26 @@
                   <option value="conejo">Conejo</option>
                 </select>
             </div>
-            <div class="form-group my-3">
-              <label for="enfermedad">Motivo de la consulta: </label>
-              <input type="text" class="form-control" id="enfermedad" name="enfermedad">
+            <!-- Grupo: Tipo Animal -->
+            <div class="form-group my-3 formulario__grupo" id="grupo__motivoConsulta">
+              <label for="motivoConsulta" class="formulario__label">Motivo Consulta: </label>
+              <div class="formulario__grupo-input">
+                <input type="text" class="form-control formulario__input" id="motivoConsulta" name="motivoConsulta" aria-describedby="Ingrese el motivo de la consulta" placeholder="Ingrese el motivo de la consulta">
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+              </div>
+              <p class="formulario__input-error">El motivo de la consulta sólo puede tener letras.</p>
             </div>
-            <button type="submit" class="btn btn-primary my-3" id="addPet">Agregar</button>
+            <!-- Grupo: Formulario Exitoso -->
+            <div class="formulario__mensaje" id="formulario__mensaje">
+              <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente.</p>
+            </div>
+            <!-- Botón Submit -->
+            <div class="formulario__grupo formulario__grupo-btn-enviar">
+              <button type="submit" class="btn btn-primary my-3 formulario__btn" id="addPet">Agregar</button>
+              <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario se envio exitosamente.</p>
+            </div>
           </form>
+          <!-- Div Resultados -->
           <div class="text-center mt-5">
               <p>Datos Agregados</p>
               <div id="resultado">
