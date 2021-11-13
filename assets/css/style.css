@@ -1,3 +1,11 @@
 form {
-    font-family: 'Tajawal', sans-serif;
+	font-family: "Tajawal", sans-serif;
+}
+.form__validation-ok {
+	color: #1ed12d;
+	opacity: 1;
+}
+.form__validation-error {
+	color: #bb2929;
+	opacity: 0;
 }
